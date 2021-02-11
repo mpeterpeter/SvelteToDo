@@ -1,14 +1,7 @@
 <script>
-	import {writable} from "svelte/store";
-
-	const count = writable(0);
-
-	count.plus = () => {
-		count.update(n => n+1);
-	}
-	count.minus = () => {
-		count.update(n => n-1);
-	}
+   import NewTaskToList from "./Components/NewTaskToList.svelte";
+   import {count, todoDict} from "./Components/store.js";
+   import ShowNewTask from "./Components/ShowNewTask.svelte";
 
 	let name = "Peter";
 </script>
@@ -16,9 +9,11 @@
 <main>
 	<h1>Hello {name}!</h1>
 	<p>Welcome to my ToDo App.</p>
-	<p>Der Count ist: {$count}</p>
-	<button on:click={count.plus}>+1</button>
-	<button on:click={count.minus}>-1</button>
+   <NewTaskToList />
+
+   {#each $todoDict as todo}
+      <ShowNewTask task = {todo}/>
+   {/each}
 </main>
 
 <style>

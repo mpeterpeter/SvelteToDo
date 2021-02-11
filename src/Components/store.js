@@ -1,4 +1,4 @@
-import { writable } from "svelte/store.js";
+import { writable } from "svelte/store";
 
 function createCount() {
     const {set, subscribe, update } = writable(0);
@@ -8,7 +8,7 @@ function createCount() {
         reset: () => set(0),
         plus: () => update(n => n + 1),
         minus: () => update(n => n - 1)
-    }
+    };
 }
 
 function createStore() {
@@ -19,8 +19,10 @@ function createStore() {
         reset: () => set([]),
         addTask: task => update(list => [...list, task]),
         deleteTask: task => update(list => list.filter(t => t.id != task.id))
-    }
+    };
 }
 
-export const count = createCount();
-export const todoDict = createStore();
+const count = createCount();
+const todoDict = createStore();
+
+export {count, todoDict};
