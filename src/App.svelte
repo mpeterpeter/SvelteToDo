@@ -18,9 +18,11 @@
 
 <style>
 	main {
+      display:grid;
+      place-content: center;
 		text-align: center;
 		padding: 1em;
-		max-width: 240px;
+		width:100%;
 		margin: 0 auto;
 	}
 
