@@ -12,6 +12,7 @@
          input.style.textDecoration = "line-through";
          task.done = true
       }
+      console.log(task)
    }
 </script>
 

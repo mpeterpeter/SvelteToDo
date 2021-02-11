@@ -2,13 +2,15 @@
    import NewTaskToList from "./Components/NewTaskToList.svelte";
    import {count, todoDict} from "./Components/store.js";
    import ShowNewTask from "./Components/ShowNewTask.svelte";
+   import ProgressInfo from "./Components/ProgressInfo.svelte";
 
 	let name = "Peter";
 </script>
 
 <main>
 	<h1>Hello {name}!</h1>
-	<p>Welcome to my ToDo App.</p>
+	<h2>Welcome to my ToDo App.</h2>
+   <ProgressInfo />
    <NewTaskToList />
 
    {#each $todoDict as todo}
