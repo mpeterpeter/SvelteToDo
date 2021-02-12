@@ -1,6 +1,5 @@
 import { writable } from "svelte/store";
 
-let n = 5;
 
 function createCount() {
     const {set, subscribe, update } = writable(0);
