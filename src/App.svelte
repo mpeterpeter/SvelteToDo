@@ -1,6 +1,6 @@
 <script>
    import NewTaskToList from "./Components/NewTaskToList.svelte";
-   import {count, todoDict} from "./Components/store.js";
+   import {count, todoDict, doneCount} from "./Components/store.js";
    import ShowNewTask from "./Components/ShowNewTask.svelte";
    import ProgressInfo from "./Components/ProgressInfo.svelte";
 
@@ -16,6 +16,9 @@
    {#each $todoDict as todo}
       <ShowNewTask task = {todo}/>
    {/each}
+   <button 
+      on:click={todoDict.cleanUp}
+      on:click={() => doneCount.refresh($todoDict)}>CleanUp</button>
 </main>
 
 <style>

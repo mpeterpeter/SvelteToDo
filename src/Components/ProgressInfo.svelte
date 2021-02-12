@@ -1,7 +1,8 @@
 <script>
-   import {count, todoDict} from "./store.js";
+   import {todoDict, doneCount} from "./store.js";
+
 </script>
 
 <h2>
-   {$todoDict.filter(task => task.done == true).length} | {$count} Tasks done
+   {$doneCount} | {$todoDict.length} Tasks done
 </h2>

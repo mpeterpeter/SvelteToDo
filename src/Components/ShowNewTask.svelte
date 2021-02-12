@@ -1,4 +1,5 @@
 <script>
+   import {doneCount, todoDict} from "./store.js";
    export let task = {};
 
    let input = "";
@@ -12,7 +13,7 @@
          input.style.textDecoration = "line-through";
          task.done = true
       }
-      console.log(task)
+      doneCount.refresh($todoDict);
    }
 </script>
 
