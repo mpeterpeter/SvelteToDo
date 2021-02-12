@@ -10,6 +10,7 @@
 <main>
 	<h1>Hello {name}!</h1>
 	<h2>Welcome to my ToDo App.</h2>
+
    <ProgressInfo doneCount={$doneCount} tasks={$todoDict}/>
    <NewTaskToList />
 
