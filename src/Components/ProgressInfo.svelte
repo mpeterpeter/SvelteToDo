@@ -1,8 +1,8 @@
 <script>
-   import {todoDict, doneCount} from "./store.js";
-
+   export let doneCount = 0;
+   export let tasks = [];
 </script>
 
 <h2>
-   {$doneCount} | {$todoDict.length} Tasks done
+   {doneCount} | {tasks.length} Tasks done
 </h2>

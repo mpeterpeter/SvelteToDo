@@ -18,15 +18,27 @@
 </script>
 
 <div>
-   <input
-      id={task.id}
-      value={task.name}
-      bind:this={input}
-      on:dblclick={()=>input.readOnly=false}
-      on:keyup={e => {e.key=="Enter"?input.readOnly=true:null}}
-      type="text"
-      readonly>
-
+   {#if task.done}
+      <input
+         style="text-decoration:line-through;"
+         id={task.id}
+         value={task.name}
+         bind:this={input}
+         on:dblclick={()=>input.readOnly=false}
+         on:keyup={e => {e.key=="Enter"?input.readOnly=true:null}}
+         type="text"
+         readonly>
+   {:else}
+      <input
+         style="text-decoration:none;"
+         id={task.id}
+         value={task.name}
+         bind:this={input}
+         on:dblclick={()=>input.readOnly=false}
+         on:keyup={e => {e.key=="Enter"?input.readOnly=true:null}}
+         type="text"
+         readonly>
+   {/if}
    <button on:click={() => toggle(task)}>Done</button>
 </div>
 

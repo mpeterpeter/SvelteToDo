@@ -10,7 +10,7 @@
 <main>
 	<h1>Hello {name}!</h1>
 	<h2>Welcome to my ToDo App.</h2>
-   <ProgressInfo />
+   <ProgressInfo doneCount={$doneCount} tasks={$todoDict}/>
    <NewTaskToList />
 
    {#each $todoDict as todo}
@@ -18,7 +18,7 @@
    {/each}
    <button 
       on:click={todoDict.cleanUp}
-      on:click={() => doneCount.refresh($todoDict)}>CleanUp</button>
+      on:click={() => doneCount.refresh($todoDict)}>Clean</button>
 </main>
 
 <style>
