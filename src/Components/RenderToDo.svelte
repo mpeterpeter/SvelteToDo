@@ -1,19 +1,10 @@
-<script>
-   import {doneCount, todoDict} from "./store.js";
+<script> 
    export let task = {};
 
    let input = "";
 
-   const toggle = task => {
-      if(task.done == true){
-         input.style.textDecoration = "none";
-         task.done = false
-      }
-      else{
-         input.style.textDecoration = "line-through";
-         task.done = true
-      }
-      doneCount.refresh($todoDict);
+   const toggle = () => {
+      return 0;
    }
 </script>
 

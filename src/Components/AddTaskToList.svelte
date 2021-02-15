@@ -1,19 +1,19 @@
 <script>
    import {count, todoDict} from "./store.js";
 
-   let input = "";
+   let value = "";
 
    const addTask = key => {
-      if(key == "Enter" && input.value){
+      if(key == "Enter" && value){
          count.plus();
          let newTask = {
-            id : $count.toString() + input.value,
-            name : input.value,
+            id : $count.toString() + value,
+            name : value,
             done : false
          }
          todoDict.addTask(newTask);
          console.log($todoDict,$count)
-         input.value = "";
+         value = "";
       }
    }
 </script>
@@ -21,7 +21,7 @@
 <div>
    <input 
       on:keyup={e=>addTask(e.key)}
-      bind:this={input} 
+      bind:value={value} 
       type="text">
 
       <button on:click={() => addTask("Enter")}>Add</button>

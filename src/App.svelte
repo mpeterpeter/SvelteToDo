@@ -1,8 +1,6 @@
 <script>
-   import NewTaskToList from "./Components/NewTaskToList.svelte";
-   import {count, todoDict, doneCount} from "./Components/store.js";
-   import ShowNewTask from "./Components/ShowNewTask.svelte";
-   import ProgressInfo from "./Components/ProgressInfo.svelte";
+   import NewList from "./Components/NewList.svelte";
+   import {dataStore} from "./Components/store.js";
 
 	let name = "Peter";
 </script>
@@ -11,15 +9,8 @@
 	<h1>Hello {name}!</h1>
 	<h2>Welcome to my ToDo App.</h2>
 
-   <ProgressInfo doneCount={$doneCount} tasks={$todoDict}/>
-   <NewTaskToList />
+   <NewList />
 
-   {#each $todoDict as todo}
-      <ShowNewTask task = {todo}/>
-   {/each}
-   <button 
-      on:click={todoDict.cleanUp}
-      on:click={() => doneCount.refresh($todoDict)}>Clean</button>
 </main>
 
 <style>
