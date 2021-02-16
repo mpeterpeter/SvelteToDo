@@ -1,6 +1,5 @@
 <script>
    import NewList from "./Components/NewList.svelte";
-   import ProgressInfo from "./Components/ProgressInfo.svelte";
    import NewTaskToList from "./Components/NewTaskToList.svelte";
    import RenderToDo from "./Components/RenderToDo.svelte";
    import {dataStore} from "./Components/store.js";
@@ -12,19 +11,20 @@
          doneCount = $dataStore.lists[cL].filter(item => item.done).length
       }
    }
+
    $: {
       dataStore.updateToLocal($dataStore);
    }
 </script>
 
 <main>
-	<h2>Welcome to my ToDo App.</h2>
+	<h1>ToDo</h1>
 
    <NewList />
 
    {#if $dataStore.currentList !== "default"}
       <div class="task-list-container">
-         <ProgressInfo {doneCount} tasks={$dataStore.lists[cL]}/>
+         <h2 id="Progress"> {doneCount} | {$dataStore.lists[cL].length}</h2>
          <NewTaskToList />
 
          {#if $dataStore.lists[cL]}
@@ -32,7 +32,10 @@
                <RenderToDo {task} />
             {/each}
          {/if}
+         <button style="margin: 15px 0 15px auto; width: 40%;" on:click={dataStore.cleanUpCurrentList}>CleanUp</button>
       </div>
+   {:else}
+      <div>No List selected.</div>
    {/if}
    
    
@@ -51,14 +54,20 @@
 	h1 {
 		color: #ff3e00;
 		text-transform: uppercase;
-		font-size: 4em;
+		font-size: 3em;
 		font-weight: 100;
 	}
 
    .task-list-container{
       margin: 30px 0;
       padding: 5px;
-      border: 1px solid orangered;
+      border: 2px solid orangered;
+      border-radius: 4px;
+      padding: 5px 20px;
+   }
+   div{
+      display: grid;
+      place-content: center;
    }
 
 	@media (min-width: 640px) {

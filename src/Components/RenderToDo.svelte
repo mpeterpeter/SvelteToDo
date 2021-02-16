@@ -2,6 +2,7 @@
    import {dataStore} from "./store.js";
    export let task = {};
 
+
    let input = "";
 
    const toggle = () => {
@@ -13,6 +14,13 @@
       }
       dataStore.updateToLocal($dataStore);
    }
+
+   const updateName = e => {
+      if(e.key == "Enter"){
+         input.readOnly = true;
+         dataStore.updateToLocal($dataStore);
+      }
+   }
 </script>
 
 <div>
@@ -20,20 +28,20 @@
       <input
          style="text-decoration:line-through;"
          id={task.id}
-         value={task.name}
          bind:this={input}
+         bind:value={task.name}
          on:dblclick={()=>input.readOnly=false}
-         on:keyup={e => {e.key=="Enter"?input.readOnly=true:null}}
+         on:keyup={updateName}
          type="text"
          readonly>
    {:else}
       <input
          style="text-decoration:none;"
          id={task.id}
-         value={task.name}
          bind:this={input}
+         bind:value={task.name}
          on:dblclick={()=>input.readOnly=false}
-         on:keyup={e => {e.key=="Enter"?input.readOnly=true:null}}
+         on:keyup={updateName}
          type="text"
          readonly>
    {/if}

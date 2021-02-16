@@ -3,10 +3,6 @@
 
    let newListName = "";
 
-   $:{
-      console.log($dataStore);
-   }
-
    const addNewList = (key) => {
       if(key === "Enter" && newListName){
          dataStore.addList(newListName);
@@ -26,8 +22,8 @@
 
 <main>
    <div>
-      <input on:keyup={e => addNewList(e.key)} type="text" bind:value={newListName}>
-      <button on:click={() => addNewList("Enter")}>Add List</button>
+      <input id="listSelect" on:keyup={e => addNewList(e.key)} type="text" bind:value={newListName}>
+      <button on:click={() => addNewList("Enter")}>New List</button>
    </div>
 
    <div>
@@ -38,14 +34,17 @@
          
          <option 
             value="default" 
-            disabled>ListenAnzeige</option>
+            disabled >ListenAnzeige</option>
          
          {#if Object.keys($dataStore.lists)}
             {#each Object.keys($dataStore.lists) as list_name}
+               
                <option 
-                  value={list_name}>{list_name}</option>
+                  value={list_name} >{list_name}</option>
+            
             {/each}
          {/if}
+
       </select>  
 
       <button on:click={() => {dataStore.deleteList($dataStore.currentList);}}>delete List</button>

@@ -3,7 +3,7 @@ import { writable } from "svelte/store";
 let _data = {
    id_count : 0,
    lists : {},
-   currentList : "" 
+   currentList : "default" 
 };
 
 function createData(){
@@ -14,6 +14,7 @@ function createData(){
       data = writable(local);
    }
 
+   /*Update functions: writing to Localstorage*/
    const _updateLocal = new_data => {
       localStorage.setItem("data",JSON.stringify(new_data));
    };
@@ -23,6 +24,14 @@ function createData(){
       _updateLocal(old_data);
    };
 
+   /*Id-Count Manipulation*/
+   data.idPlus = () => data.update(old_data => {
+      old_data.id_count++;
+      _updateLocal(old_data);
+      return old_data;
+   });
+
+   /*Lists Manipulation*/
    data.addList = (list_name) => data.update(old_data => {
       old_data.lists[list_name] = [];
       old_data.currentList = list_name;
@@ -48,7 +57,22 @@ function createData(){
       _updateLocal(old_data);
       return old_data;
    });
-   
+
+   /*List-Manipulation*/
+   data.addToCurrentList = newTask => data.update(old_data => {
+      let cL = old_data.currentList;
+      old_data.lists[cL] = [...old_data.lists[cL],newTask];
+      _updateLocal(old_data);
+      return old_data;
+   });
+
+   data.cleanUpCurrentList = () => data.update(old_data => {
+      let cL = old_data.currentList;
+      old_data.lists[cL] = old_data.lists[cL].filter(item => item.done !== true);
+      _updateLocal(old_data);
+      return old_data;
+   });
+
    return data;
 }
 

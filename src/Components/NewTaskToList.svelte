@@ -3,17 +3,15 @@
 
    let value = "";
 
-   $: cL = $dataStore.currentList;
-
    const addTask = key => {
       if(key == "Enter" && value){
-         $dataStore.id_count = $dataStore.id_count + 1;
+         dataStore.idPlus();
          let newTask = {
             id : $dataStore.id_count.toString() + value,
             name : value,
             done : false
          }
-         $dataStore.lists[cL] = [...$dataStore.lists[cL],newTask];
+         dataStore.addToCurrentList(newTask);
          value = "";
       }
    }
