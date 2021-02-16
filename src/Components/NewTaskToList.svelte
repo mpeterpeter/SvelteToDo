@@ -1,18 +1,19 @@
 <script>
-   import {count, todoDict} from "./store.js";
+   import {dataStore} from "./store.js";
 
    let value = "";
 
+   $: cL = $dataStore.currentList;
+
    const addTask = key => {
       if(key == "Enter" && value){
-         count.plus();
+         $dataStore.id_count = $dataStore.id_count + 1;
          let newTask = {
-            id : $count.toString() + value,
+            id : $dataStore.id_count.toString() + value,
             name : value,
             done : false
          }
-         todoDict.addTask(newTask);
-         console.log($todoDict,$count)
+         $dataStore.lists[cL] = [...$dataStore.lists[cL],newTask];
          value = "";
       }
    }
@@ -43,8 +44,8 @@
       background-color: rgba(200,140,30,0.2)
    } 
    button{
-      background-color: yellow;
-      color: black;
+      background-color: blue;
+      color: white;
       font-weight: 800;
       margin:2px;
    }   

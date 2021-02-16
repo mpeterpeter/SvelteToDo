@@ -1,10 +1,17 @@
 <script> 
+   import {dataStore} from "./store.js";
    export let task = {};
 
    let input = "";
 
    const toggle = () => {
-      return 0;
+      if(task.done === false){
+         task.done = true;
+      }
+      else{
+         task.done = false;
+      }
+      dataStore.updateToLocal($dataStore);
    }
 </script>
 
